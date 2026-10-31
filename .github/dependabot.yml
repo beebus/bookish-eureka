@@ -1,0 +1,28 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Python/pip - backend (requirements.txt lives in the repo root)
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    groups:
+      # One PR for all Python dependency updates
+      pip-all:
+        patterns: [ "*" ]
+
+  # npm - frontend
+  - package-ecosystem: "npm"
+    # Look for `package.json` and `lock` files in the `frontend` directory
+    directory: "/frontend"
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    groups:
+      npm-minor-patch:
+        update-types: [ "minor", "patch" ]
